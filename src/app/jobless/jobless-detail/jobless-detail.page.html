@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/jobless"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{loadJob.title}}</ion-title>
+    <ion-buttons slot="end">
+            <ion-button (click)="share()" >
+              <ion-icon  name="share"></ion-icon>
+            </ion-button>
+            <ion-button (click)="presentModal()">
+              <ion-icon  name="cart"></ion-icon>
+            </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen="true">
+  <ion-card #p>
+      <ion-slides #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)" pager="true" scrollbar="true">
+          <ion-slide>
+              <ion-card>
+                  <ion-card-content>{{loadJob.category}}</ion-card-content>
+              </ion-card> 
+          </ion-slide>
+          <ion-slide>
+            <ion-card class="imgs">
+                <img [src]="loadJob.pictures[0]">
+            </ion-card>
+          </ion-slide>
+        </ion-slides>
+        <ion-card-content>
+          <ion-card-title>
+              <ion-chip color="primary">
+                  <ion-label color="primary">
+                      {{loadJob.category}}
+                  </ion-label>
+              </ion-chip>
+              <ion-chip *ngIf="loadJob.aviable" color="success">
+                  <ion-label color="blue">
+                      Disponible
+                  </ion-label>
+              </ion-chip>
+              <ion-chip *ngIf="!loadJob.aviable" color="danger">
+                  <ion-label color="blue">
+                      indisponible
+                  </ion-label>
+              </ion-chip>
+              <ion-chip >
+                  <ion-label color="blue">
+                      {{loadJob.type}}
+                  </ion-label>
+              </ion-chip>
+              <ion-chip color="secondary" >
+                  <ion-label >
+                      {{loadJob.city}}
+                  </ion-label>
+              </ion-chip>
+              <ion-chip >
+                  <ion-label color="blue">
+                      {{loadJob.state}}
+                  </ion-label>
+              </ion-chip>
+          </ion-card-title>
+        </ion-card-content>
+  </ion-card>
+
+  <ion-item>
+      Prix: {{loadJob.prix  | currency }} 
+  </ion-item>
+  <ion-item>
+        <span *ngIf="loadJob.start>=1">
+            <ion-icon color="warning" name="star"></ion-icon>
+          </span>
+          <span *ngIf="loadJob.start>=2">
+              <ion-icon color="warning" name="star"></ion-icon>
+          </span>
+          <span *ngIf="loadJob.start>=3">
+              <ion-icon color="warning" name="star"></ion-icon>
+          </span>
+          <span *ngIf="loadJob.start>=4">
+              <ion-icon color="warning" name="star"></ion-icon>
+          </span>
+          <span *ngIf="loadJob.start>=5">
+              <ion-icon color="warning" name="star"></ion-icon>
+          </span>
+    </ion-item>
+  <ion-item>
+    {{loadJob.detail}} 
+  </ion-item>
+  <ion-grid>
+      <ion-row>
+      <ion-col col-6>
+        <rating [rate]="rate"
+        readonly="false" 
+        size="1" 
+        (rateChange)="onRateChange($event)">
+       </rating>
+      </ion-col>
+       <ion-col col-1><ion-button round color="primary">Noter</ion-button></ion-col>
+      </ion-row>
+  </ion-grid>
+    <ion-col color="primary" offset="2" col-10>
+        <ion-button (click)="presentToast(loadJob)">
+                <ion-icon name="cart" ></ion-icon>
+                Ajouter au panier 
+        </ion-button>   
+    </ion-col> 
+</ion-content>

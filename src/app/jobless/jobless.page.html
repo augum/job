@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+           Liste des articles
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+    <ion-list>
+     <ion-item *ngFor="let j of jobs"  >
+       <ion-thumbnail>
+              <img [src]="j.pictures[0]" tappable (click)="openpicture(j.pictures[0])">
+       </ion-thumbnail>
+        <ion-list>
+          <ion-item [routerLink]="['./',j.id]">
+              <p>{{j.title}}</p> 
+          </ion-item>
+
+        </ion-list>
+  </ion-item>
+ </ion-list>
+    </ion-card-content>
+  </ion-card>
+ 
+</ion-content>
+<ion-footer>
+  <ion-row>
+    <ion-col offset="1" col-10>
+        <ion-button round large>
+          <ion-icon name="camera"></ion-icon>
+          Vendre vos meubles
+        </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-footer>
+
+
