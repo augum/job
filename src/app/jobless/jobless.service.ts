@@ -1,105 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Jobless } from 'src/models/jobless.model';
+import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
 
 
 @Injectable({
   providedIn: 'root'
 })
+/* le service exploite les données de la table product de Bdd*/ 
 export class JoblessService {
-  private jobs:Jobless[]=[
-    {
-      id:'j1',
-      title:'chaise',
-      detail:'la fabrique des informaticiens, reseu et devla fabrique des informaticiens, reseu et devla fabrique des informaticiens, reseu et devla fabrique des informaticiens, reseu et dev',
-      category:'science',
-      city:'kinshasa',
-      pictures:[
-        './assets/img/jobless1/ap.jpg'
-      ],
-      start:5,
-      telephone:'0817454018',
-      aviable:true,
-      type:'Livraison',
-      feed:8,
-      prix:45,
-      state:"neuf"
-    },
-    {
-      id:'j2',
-      title:'meuble de bureau',
-      detail:'la fabrique des informaticiens, reseu et devla fabrique des informaticiens, reseu et devla fabrique des informaticiens, reseu et devla fabrique des informaticiens, reseu et dev',
-      category:'science',
-      city:'kinshasa',
-      pictures:[
-        './assets/img/jobless1/ap.jpg'
-      ],
-      start:4,
-      telephone:'0817454018',
-      aviable:true,
-      type:'Livraison',
-      feed:20,
-      prix:25,
-      state:"neuf",
-    },
-    {
-      id:'j2',
-      title:'meuble de bureau',
-      detail:'la fabrique des informaticiens, reseu et devla fabrique des informaticiens, reseu et devla fabrique des informaticiens, reseu et devla fabrique des informaticiens, reseu et dev',
-      category:'science',
-      city:'kinshasa',
-      pictures:[
-        './assets/img/jobless1/ap.jpg'
-      ],
-      start:4,
-      telephone:'0817454018',
-      aviable:true,
-      type:'Livraison',
-      feed:20,
-      prix:25,
-      state:"neuf",
-    },
-    {
-      id:'j2',
-      title:'meuble de bureau',
-      detail:'la fabrique des informaticiens, reseu et devla fabrique des informaticiens, reseu et devla fabrique des informaticiens, reseu et devla fabrique des informaticiens, reseu et dev',
-      category:'science',
-      city:'kinshasa',
-      pictures:[
-        './assets/img/jobless1/ap.jpg'
-      ],
-      start:4,
-      telephone:'0817454018',
-      aviable:true,
-      type:'Livraison',
-      feed:20,
-      prix:25,
-      state:"neuf",
-    },
-    {
-      id:'j2',
-      title:'meuble de bureau',
-      detail:'la fabrique des informaticiens, reseu et devla fabrique des informaticiens, reseu et devla fabrique des informaticiens, reseu et devla fabrique des informaticiens, reseu et dev',
-      category:'science',
-      city:'kinshasa',
-      pictures:[
-        './assets/img/jobless1/ap.jpg'
-      ],
-      start:4,
-      telephone:'0817454018',
-      aviable:true,
-      type:'Livraison',
-      feed:20,
-      prix:25,
-      state:"neuf",
-    }
-  ];
-  constructor() { }
-  getAllJobless(){
-    return this.jobs;
+  jobs;
+  public host:string="http://localhost:8080";
+  constructor(private  http:HttpClient) { }
+  //cette methode recupère les ressources dans la BD
+  public getResource(url){
+    return this.http.get(this.host+url);
   }
-  getonJob(joblessId:string){
-    return this.jobs.find(job=>{
+  getonJob(joblessId:string,url){
+    /*return this.jobs.find(job=>{
       return job.id=== joblessId;
-    })
+    })*/
+    return this.http.get(this.host+url+joblessId);
   }
 }

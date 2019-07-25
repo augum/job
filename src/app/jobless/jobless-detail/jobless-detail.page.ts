@@ -25,7 +25,7 @@ export class JoblessDetailPage implements OnInit {
   subject:string=null;
   file:string = null;
   link:string=null;
-  loadJob:Jobless;
+  loadJob;
     slideOpts = {
       initialSlide:0,
       speed: 400,
@@ -38,12 +38,20 @@ export class JoblessDetailPage implements OnInit {
   public modalController: ModalController,private socialSharing: SocialSharing) { }
    bdd:itemCart[];
   ngOnInit() {
+    this.getonProduct('/products/');
+  }
+  private getonProduct(url) {
     this.activateRoute.paramMap.subscribe(paramMap=>{
       if(!paramMap.has('joblessId')){
         return;
       }
       const joblessId = paramMap.get('joblessId');
-      this.loadJob= this.jobService.getonJob(joblessId);
+      this.jobService.getonJob(joblessId,url)
+      .subscribe(data=>{
+        this.loadJob = data;
+      },err=>{
+        console.log(err);
+      } )
     });
   }
  /* slidesDidLoad(slides: Slides) {

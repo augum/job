@@ -13,15 +13,20 @@ import { ImageModalPage } from 'src/app/image-modal/image-modal.page';
   styleUrls: ['./jobless.page.scss'],
 })
 export class JoblessPage implements OnInit {
-   private jobs:Jobless[];
+   private jobs;
   constructor(private  jobService:JoblessService,private alerte:AlertController,
               private action:ActionSheetController,private modalController:ModalController) { }
 
   ngOnInit() {
-    this.jobs = this.jobService.getAllJobless();
+    this.getProducts('/products');
   }
-  AlerteNormal(){
-     alert("je suis alerte normal");
+  private getProducts(url) {
+    this.jobService.getResource(url)
+      .subscribe(data=>{
+        this.jobs = data;
+      },err=>{
+        console.log(err);
+      } )
   }
   AlerteIonic(){
    let options: AlertOptions={

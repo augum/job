@@ -26,14 +26,22 @@ export class ProduitPage implements OnInit {
   
   ngOnInit() {
     this.myProduct = {} as Jobless;
-    this.myProduct.pictures=[];
+    this.myProduct.picture;
     this.getCategorie();
   }
   
   enregistrer(myProduct:Jobless){
-    myProduct.id="6";
     myProduct.start=1;
-    myProduct.aviable =true;
+    myProduct.picture="unknown.png"
+    myProduct.available =true;
+
+    let url = this.catservice.host+"/products"
+    this.catservice.postRessource(url,myProduct)
+      .subscribe(data=>{
+      },err=>{
+        console.log(err);
+      })
+
     console.log('myProduct= ', myProduct)
 
   }
@@ -45,7 +53,7 @@ export class ProduitPage implements OnInit {
     this.imagePicker.getPictures(options).then((results) => {
       for (var i = 0; i < results.length; i++) {
           console.log('Image URI: ' + results[i]);
-         this. myProduct.pictures= results;
+         this. myProduct.picture= results;
       }
     }, (err) => { });
   }

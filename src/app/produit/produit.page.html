@@ -34,12 +34,12 @@
         <ion-item *ngIf="categories">
             <ion-label position="floating">Categorie du produit</ion-label>
             <ion-select [(ngModel)]=" myProduct.categorie">
-              <ion-select-option [value]="c.name" *ngFor="let c of categories._embedded.categories">{{c.name}}</ion-select-option>
+              <ion-select-option [value]="c._links.self.href" *ngFor="let c of categories._embedded.categories">{{c.name}}</ion-select-option>
             </ion-select>
         </ion-item>
         <ion-item>
             <ion-label position="floating">Où se trouve le produit</ion-label>
-            <ion-select [(ngModel)]=" myProduct.ville">
+            <ion-select [(ngModel)]=" myProduct.city">
               <ion-select-option [value]="v.titre" *ngFor="let v of city">{{v.titre}}</ion-select-option>
             </ion-select>
         </ion-item>
@@ -51,7 +51,7 @@
           </ion-item-divider>
           <ion-item>
               <ion-label position="floating">Etat</ion-label>
-              <ion-select [(ngModel)]=" myProduct.etat" >
+              <ion-select [(ngModel)]=" myProduct.state" >
                 <ion-select-option value="Fabrication locale">Fabrication locale</ion-select-option>
                 <ion-select-option value="europe">Importé Europe</ion-select-option>
                 <ion-select-option value="amerique">Importé amérique</ion-select-option>

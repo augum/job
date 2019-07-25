@@ -11,19 +11,20 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-    <ion-list>
-     <ion-item *ngFor="let j of jobs"  >
+      
+    <ion-list *ngIf="jobs">
+     <ion-item *ngFor="let j of jobs._embedded.products"  >
        <ion-thumbnail>
-              <img [src]="j.pictures[0]" tappable (click)="openpicture(j.pictures[0])">
+          <img height="100" src="{{this.jobService.host+'/photoProduct/'+j.id}}">
        </ion-thumbnail>
-        <ion-list>
+         <ion-list>
           <ion-item [routerLink]="['./',j.id]">
               <p>{{j.title}}</p> 
           </ion-item>
 
-        </ion-list>
-  </ion-item>
- </ion-list>
+         </ion-list>
+        </ion-item>
+       </ion-list>
     </ion-card-content>
   </ion-card>
  

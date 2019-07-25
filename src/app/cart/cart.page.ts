@@ -3,6 +3,7 @@ import { ViewController } from '@ionic/core';
 import { ModalController, AlertController,ToastController  } from '@ionic/angular';
 import { itemCart } from 'src/models/interface-cartItem';
 import { Storage } from '@ionic/storage';
+import { JoblessService } from 'src/app/jobless/jobless.service';
 
 
 
@@ -16,7 +17,7 @@ export class CartPage implements OnInit {
    Cartitem:itemCart[];
    public total : number = 0;
   constructor(private modalController: ModalController,private storage:Storage,private toastController:ToastController,
-    public alertController: AlertController) { }
+    public alertController: AlertController,private jobService:JoblessService) { }
   
   ngOnInit() {
     this.voirPanier();

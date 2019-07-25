@@ -18,13 +18,8 @@
   <ion-card #p>
       <ion-slides #mySlider (ionSlidesDidLoad)="slidesDidLoad(mySlider)" pager="true" scrollbar="true">
           <ion-slide>
-              <ion-card>
-                  <ion-card-content>{{loadJob.category}}</ion-card-content>
-              </ion-card> 
-          </ion-slide>
-          <ion-slide>
             <ion-card class="imgs">
-                <img [src]="loadJob.pictures[0]">
+                <img src="{{this.jobService.host+'/photoProduct/'+loadJob.id}}">
             </ion-card>
           </ion-slide>
         </ion-slides>
@@ -35,19 +30,14 @@
                       {{loadJob.category}}
                   </ion-label>
               </ion-chip>
-              <ion-chip *ngIf="loadJob.aviable" color="success">
+              <ion-chip *ngIf="loadJob.available" color="success">
                   <ion-label color="blue">
                       Disponible
                   </ion-label>
               </ion-chip>
-              <ion-chip *ngIf="!loadJob.aviable" color="danger">
+              <ion-chip *ngIf="!loadJob.available" color="danger">
                   <ion-label color="blue">
                       indisponible
-                  </ion-label>
-              </ion-chip>
-              <ion-chip >
-                  <ion-label color="blue">
-                      {{loadJob.type}}
                   </ion-label>
               </ion-chip>
               <ion-chip color="secondary" >

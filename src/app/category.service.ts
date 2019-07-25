@@ -11,6 +11,8 @@ export class CategoryService {
 
   public getResource(url){
     return this.httpclient.get(this.host+url);
-
+  }
+  postRessource(url,data){
+    return this.httpclient.post(url,data);
   }
 }

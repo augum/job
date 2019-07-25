@@ -2,15 +2,14 @@ export interface Jobless{
   id:string;
   title:string;
   detail:string;
-  pictures:string[];
+  picture:string;
   category:string;
   city:string;
   start:number;
   telephone:string;
-  aviable: boolean,
+  available: boolean,
   type:string,
   feed:number
   state:string;
   prix:number;
-
 }

@@ -7,7 +7,7 @@
   <ion-list>
     <ion-item *ngFor="let c of Cartitem; let i=index">
         <ion-thumbnail slot="start">
-            <img [src]="c.item.pictures[0]">
+            <img src="{{this.jobService.host+'/photoProduct/'+c.item.id}}">
         </ion-thumbnail>
          <ion-list>
            <ion-item>
